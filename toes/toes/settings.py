@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '2i0ar3j%__6+e$x#xzh!#r#s=@&^!3c%^!4uv(aw873y@5ks#q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['52.201.220.252','0.0.0.0']
+ALLOWED_HOSTS = ['52.201.220.252','0.0.0.0','*']
 
 DJANGO_REST_LOOKUP_FIELD = 'authapp.User.phone'
 # Application definition
@@ -43,8 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-    'custom_apis', 
-
+    'custom_apis',
    
 ]
 
