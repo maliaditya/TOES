@@ -8,7 +8,7 @@ import base64
 import requests
 from .models import VerifyOtp
 import math, random 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from authapp.models import WorkerDetails, JobDetails, User, Categories
 from django.db import connection
 from rest_framework.response import Response
