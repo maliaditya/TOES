@@ -25,7 +25,7 @@ def recruiters_requests(request,recruiter_id):
     content = {}
     payload = []
     for data in row:
-        cursor.execute(f'select first_name, address,last_name from authapp_user  where id = {data[2]}')
+        cursor.execute(f'select first_name, address,last_name, phone from authapp_user  where id = {data[2]}')
         row1 = cursor.fetchall()
         for info in row1:
 
@@ -37,6 +37,7 @@ def recruiters_requests(request,recruiter_id):
             'woker_fname': info[0],
             'woker_lname': info[2],
             'woker_address': info[1],
+            'woker_phone_no': info[3],
             }
         payload.append(content)
 
@@ -59,7 +60,7 @@ def wokers_requests(request,worker_id):
     payload = []
     for data in row:
         u_id = data[2] 
-        cursor.execute(f'select first_name, address,last_name from authapp_user where id = {u_id}')
+        cursor.execute(f'select first_name, address,last_name, phone from authapp_user where id = {u_id}')
         row = cursor.fetchall()
         for info in row:
             content = {
@@ -70,6 +71,7 @@ def wokers_requests(request,worker_id):
                 'recruiter_fname':info[0],
                 'recruiter_lname':info[2],
                 'address':info[1],
+                'recruiter_phone_no':info[3],
 
                 }  
         
