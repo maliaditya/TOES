@@ -40,7 +40,7 @@ def display_job(request , user ):
 @permission_classes([IsAuthenticated])
 def display_recruiter_job(request , recruiterid):
     cursor = connection.cursor()
-    cursor.execute(f'select first_name,address , job_Description ,last_name, authapp_jobdetails.id from authapp_user INNER JOIN authapp_jobdetails on authapp_user.id = authapp_jobdetails.recruiter_id where authapp_jobdetails.recruiter_id = {recruiterid}')
+    cursor.execute(f'select first_name, address, job_Description ,last_name, authapp_jobdetails.id, authapp_jobdetails.job_title from authapp_user INNER JOIN authapp_jobdetails on authapp_user.id = authapp_jobdetails.recruiter_id where authapp_jobdetails.recruiter_id = {recruiterid}')
     row = cursor.fetchall()
     content = {}
     payload = []
@@ -51,6 +51,7 @@ def display_recruiter_job(request , recruiterid):
                        'address' : result[1],
                        'job_Description' : result[2],
                        'job_id' : result[4],
+                       'job_title' : result[5],
                        
                        }
         payload.append(content)
