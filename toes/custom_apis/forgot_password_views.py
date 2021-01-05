@@ -19,9 +19,9 @@ def enter_otp(request):
         data = {
             'otp':otp,
         }
-        
+        json_object = json.dumps(data, indent = 4)
         url = f'{server_url}/api/user/{phone}/'
-        response = requests.post(url, json=data)   
+        response = requests.post(url, json=json_object)   
         if response.status_code == 200:
             return redirect(f'{server_url}/api/reset_password/{phone}')
         else:
