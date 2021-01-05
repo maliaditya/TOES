@@ -17,7 +17,7 @@ def enter_otp(request):
         otp = request.POST.get('otp')
         phone = request.POST.get('phone')
         data = {
-            "otp":otp
+            "otp":f"{otp}"
         }
 
         url = f'{server_url}/api/user/{phone}/'
