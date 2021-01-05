@@ -79,27 +79,27 @@ WSGI_APPLICATION = 'toes.wsgi.application'
 
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
-            'default': {
-                            'ENGINE': 'django.db.backends.mysql', 
-                            'NAME': 'toes',
-                            'USER': 'admin',
-                            'PASSWORD': 'admin123',
-                            'HOST':'toes.cwncx4wjugfu.us-east-1.rds.amazonaws.com', 
-                            'PORT': 3306,
-                            'OPTIONS': {
-                                            'sql_mode': 'traditional',
-                                                    }
-                            }
-            }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+# DATABASES = {
+#             'default': {
+#                             'ENGINE': 'django.db.backends.mysql', 
+#                             'NAME': 'toes',
+#                             'USER': 'admin',
+#                             'PASSWORD': 'admin123',
+#                             'HOST':'toes.cwncx4wjugfu.us-east-1.rds.amazonaws.com', 
+#                             'PORT': 3306,
+#                             'OPTIONS': {
+#                                             'sql_mode': 'traditional',
+#                                                     }
+#                             }
+#             }
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework.authentication.BasicAuthentication',
