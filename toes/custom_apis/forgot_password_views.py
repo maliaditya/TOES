@@ -20,12 +20,12 @@ def enter_otp(request):
             'otp':otp,
         }
         
-        url = f'{localhost_url}/api/user/{phone}/'
+        url = f'{server_url}/api/user/{phone}/'
         response = requests.post(url, json=data)
         print(response.status_code)
         
         if response.status_code == 200:
-            return redirect(f'{localhost_url}/api/reset_password/{phone}')
+            return redirect(f'{server_url}/api/reset_password/{phone}')
         else:
             messages.error(request,'OTP not correct')
     return render(request , 'custom_apis/enterotp.html')
