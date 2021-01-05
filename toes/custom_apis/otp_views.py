@@ -61,5 +61,5 @@ def verify_otp(request, phone, otp):
     mobile = VerifyOtp.objects.get(phone=phone)
     if mobile.otp == otp:
         VerifyOtp.objects.filter(phone=phone).delete()
-        return Response("You are authorised", status=200)
+        return redirect("reset")
     return Response("OTP is wrong", status=400)
