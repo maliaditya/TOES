@@ -14,7 +14,7 @@ class generateKey:
         return str(phone) + str(datetime.date(datetime.now())) + "Some Random Secret Key"
 
 
-class getPhoneNumberRegistered(APIView):
+class SendOtp(APIView):
     # Get to Create a call for OTP
     @staticmethod
     def get(request, phone):
