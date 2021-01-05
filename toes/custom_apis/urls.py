@@ -8,6 +8,7 @@ from .verification_views import SendOtp
 from .forgot_password_views import  enter_otp,passreset
 from .admin_api_views import get_worker_count
 from .profile_image_views import retrive_profileimage
+from .otp_views import send_otp,verify_otp
 
 urlpatterns =[
     #Worker_Details
@@ -46,5 +47,8 @@ urlpatterns =[
     path("withoutsmartphone/" , display_all_withoutsmartphone),
 
     #admin api
-    path("worker_count/", get_worker_count),  
+    path("worker_count/", get_worker_count), 
+    
+    path("otp/<phone>/", send_otp),
+    path("verify/<phone>/<int:otp>", verify_otp),
 ]
