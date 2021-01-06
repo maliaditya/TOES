@@ -5,7 +5,7 @@ from .requests_views import recruiters_requests, wokers_requests
 from .status_update_views import recruiters_response, workers_response
 from .recruiter_workers_response_views import display_workers_responses,display_recruiters_responses
 from .verification_views import SendOtp
-from .forgot_password_views import  enter_otp,passreset
+from .forgot_password_views import  enter_otp,passreset, verify_phone
 from .admin_api_views import get_worker_count
 from .profile_image_views import retrive_profileimage
 from .otp_views import send_otp
@@ -50,5 +50,6 @@ urlpatterns =[
     path("worker_count/", get_worker_count), 
     
     path("otp/<phone>/", send_otp),
- 
+    
+    path("verify/phone/",verify_phone),
 ]

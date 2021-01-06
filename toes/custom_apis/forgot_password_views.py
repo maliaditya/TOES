@@ -47,5 +47,15 @@ def passreset(request):
     return render(request , 'custom_apis/resetpassword.html')
 
 
+def verify_phone(request):
+    if request.method == 'POST':
+        phone = request.POST.get('phone')
+        try:
+            User.objects.get(phone = phone)
+        except ObjectDoesNotExist:
+            messages.error(request,'Phone No. Does Not Exist')
+        
+    return render(request , 'custom_apis/verify_number.html')
+
 
 
