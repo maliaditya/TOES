@@ -9,7 +9,7 @@ class User(AbstractUser):
     dob = models.CharField(max_length=255)
     phone = models.CharField(max_length=255,unique=True,blank=False)
     is_admin = models.BooleanField(default=False)
-    isVerified = models.BooleanField(default=False)
+    isblocked = models.BooleanField(default=False)
     gender = models.CharField(max_length=255)
     counter = models.IntegerField(default=0,blank=True,null=True)
     address = models.TextField(blank=False)
