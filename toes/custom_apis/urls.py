@@ -57,6 +57,7 @@ urlpatterns =[
 
     #admin crud
     path("block/<int:st>/<int:user_id>",block),
+    path("delete/<int:user_id>",delete),
 
     
 ]

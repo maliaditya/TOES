@@ -19,4 +19,8 @@ def block(request,st,user_id):
     cursor.execute(f' update authapp_user set isblocked = {st} where id = {user_id}')
     return Response(data = {"message": "user blocked success"},status = status.HTTP_200_OK)
 
-
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def delete(request,user_id):
+    User.objects.filter(id=id).delete()
+    return Response(status = status.HTTP_200_OK)
