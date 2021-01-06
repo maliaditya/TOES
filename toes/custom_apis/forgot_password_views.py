@@ -52,6 +52,7 @@ def verify_phone(request):
         phone = request.POST.get('phone')
         try:
             User.objects.get(phone = phone)
+            return redirect('sendotp')
         except ObjectDoesNotExist:
             messages.error(request,'Phone No. Does Not Exist')
         
