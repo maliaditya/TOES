@@ -11,7 +11,7 @@ from uuid import uuid4
 from rest_framework.views import APIView
 from .models import VerifyOtp
 from django.core.exceptions import ObjectDoesNotExist
-
+import math, random 
 def enter_otp(request):
     if request.method == 'POST':
         otp = request.POST.get('otp')
