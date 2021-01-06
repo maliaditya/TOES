@@ -15,7 +15,7 @@ class ResetPasswordSerializer(serializers.Serializer):
 class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = User
-        fields = ('counter','isVerified','is_superuser','is_admin','username','password',
+        fields = ('counter','isblocked','is_superuser','is_admin','username','password',
                         'dob','gender','aadhar_no', 'profile_image','phone','first_name','last_name','smartphone')
 
 class WorkerDetailsSerializer(serializers.ModelSerializer):

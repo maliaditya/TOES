@@ -17,7 +17,7 @@ class User(AbstractUser):
     aadhar_no = models.CharField(max_length=255,default=None)
     
    
-    REQUIRED_FIELDS = ['counter','isVerified','is_superuser','is_admin','first_name','last_name','username','password',
+    REQUIRED_FIELDS = ['counter','isblocked','is_superuser','is_admin','first_name','last_name','username','password',
                         'dob','gender','aadhar_no','address','smartphone']
 
     USERNAME_FIELD = 'phone'
