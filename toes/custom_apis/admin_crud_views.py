@@ -22,5 +22,5 @@ def block(request,st,user_id):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def delete1(request,user_id):
-    User.objects.filter(id=id).delete()
+    User.objects.filter(id=user_id).delete()
     return Response(status = status.HTTP_200_OK)
