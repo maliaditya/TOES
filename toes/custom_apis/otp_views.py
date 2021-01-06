@@ -7,6 +7,7 @@ from authapp.models import User
 import base64
 import requests
 from .models import VerifyOtp
+from .serializers import VerifyOtpSerializer
 import math, random 
 from django.shortcuts import render,redirect
 from authapp.models import WorkerDetails, JobDetails, User, Categories
@@ -55,11 +56,14 @@ def send_otp(request,phone):
         return Response(data = message, status=400)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes([])
-def verify_otp(request, phone, otp):
-    mobile = VerifyOtp.objects.get(phone=phone)
-    if mobile.otp == otp:
-        VerifyOtp.objects.filter(phone=phone).delete()
-        return Response("correct", status=200)
-    return Response("OTP is wrong", status=400)
+def verify_otp(request):
+    serializer = SnippetSerializer(data=request.data)
+    if serializer.is_valid():
+        otp = serializer["otp"]    
+        if mobile.otp == otp:
+            VerifyOtp.objects.filter(phone=phone).delete()
+            return Response(serializer.data, status=200)
+    return Response(serializer.errors, status=400)
+

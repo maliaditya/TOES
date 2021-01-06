@@ -50,5 +50,5 @@ urlpatterns =[
     path("worker_count/", get_worker_count), 
     
     path("otp/<phone>/", send_otp),
-    path("verify/<phone>/<int:otp>", verify_otp),
+    path("verify/", verify_otp),
 ]

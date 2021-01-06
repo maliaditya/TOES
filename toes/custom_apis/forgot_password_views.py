@@ -15,10 +15,16 @@ def enter_otp(request):
     localhost_url = "http://127.0.0.1:8000"
     new = "http://18.209.19.126"
     if request.method == 'POST':
-        otp = request.POST.get('otp')
         phone = request.POST.get('phone')
-        url = f'{new}/api/verify/{phone}/{otp}'
-        response = requests.get(url)   
+        otp = request.POST.get('otp')
+         data = {
+            "otp":otp,
+            "phone":phone,
+        }
+
+        url = f'{new}/api/verify'
+        response = requests.get(url,data=data)  
+        print(response.status_code) 
         if response.status_code == 200:
             return redirect(f'{new}/api/reset_password/{phone}')
         else:
