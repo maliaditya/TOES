@@ -16,7 +16,7 @@ import json
 @permission_classes([IsAuthenticated])
 def block(request,st,user_id):
     cursor=connection.cursor()
-    cursor.execute(f' update authapp_user set isVerified = {st} where job_detail_id = {user_id}')
+    cursor.execute(f' update authapp_user set isVerified = {st} where id = {user_id}')
     return Response(data = {"message": "user blocked success"},status = status.HTTP_200_OK)
 
 
