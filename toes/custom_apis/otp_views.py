@@ -55,11 +55,11 @@ def send_otp(request,phone):
         return Response(data = message, status=400)
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 @permission_classes([])
 def verify_otp(request, phone, otp):
     mobile = VerifyOtp.objects.get(phone=phone)
     if mobile.otp == otp:
         VerifyOtp.objects.filter(phone=phone).delete()
-        return redirect("reset")
+        return Response("correct", status=200)
     return Response("OTP is wrong", status=400)

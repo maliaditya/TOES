@@ -18,8 +18,8 @@ def enter_otp(request):
         otp = request.POST.get('otp')
         phone = request.POST.get('phone')
         url = f'{new}/api/verify/{phone}/{otp}'
-        response = requests.post(url)   
-        if response.status_code != 400:
+        response = requests.get(url)   
+        if response.status_code == 200:
             return redirect(f'{new}/api/reset_password/{phone}')
         else:
             messages.error(request,'OTP not correct')
