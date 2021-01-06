@@ -10,18 +10,22 @@ import json
 from uuid import uuid4
 from rest_framework.views import APIView
 from .models import VerifyOtp
+from django.core.exceptions import ObjectDoesNotExist
 
 def enter_otp(request):
     if request.method == 'POST':
 
         otp = request.POST.get('otp')
-        a = VerifyOtp.objects.get(otp=otp)
-        print(a.otp)
-        if a.otp == int(otp):
-            print("inside if")
-            VerifyOtp.objects.filter(otp=otp).delete()
-            return redirect('reset')
-        else:
+        try:
+            a = VerifyOtp.objects.get(otp=otp)
+            print(a.otp)
+            if a.otp == otp:
+                print("inside if")
+                VerifyOtp.objects.filter(otp=otp).delete()
+                return redirect('reset')
+            else:
+                messages.error(request,'OTP not correct')
+        except ObjectDoesNotExist:
             messages.error(request,'OTP not correct')
     return render(request , 'custom_apis/enterotp.html')
 
