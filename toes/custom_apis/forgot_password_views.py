@@ -11,7 +11,7 @@ from uuid import uuid4
 from rest_framework.views import APIView
 from .models import VerifyOtp
 from django.core.exceptions import ObjectDoesNotExist
-
+from .otp_views import send_otp
 def enter_otp(request):
     if request.method == 'POST':
         otp = request.POST.get('otp')
@@ -52,12 +52,8 @@ def verify_phone(request):
         phone = request.POST.get('phone')
         try:
             User.objects.get(phone = phone)
-            phone = 9765402942
-            url = 'http://18.209.19.126/api/otp/{}'.format(phone)
-            response = requests.get(url)
-            print(response.status_code)
-            if response.status_code == 200:
-                return redirect('enterotp')
+            send_otp(phone=phone)
+            return redirect('enterotp')
         except ObjectDoesNotExist:
             messages.error(request,'Phone No. Does Not Exist')
         
