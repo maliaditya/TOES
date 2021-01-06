@@ -50,7 +50,7 @@ def display_by_category(request,category):
                         }
             payload.append(content)
         elif  result[6] == f'{category}':
-            content = {  'worker_name': result[0], 
+            content = {  'fname': result[0], 
                         'lname': result[14],
                         'contact_no': result[1],
                         'address': result[13],
@@ -61,7 +61,7 @@ def display_by_category(request,category):
                         }
             payload.append(content)
         else:
-            content = { 'worker_name': result[0], 
+            content = { 'fname': result[0], 
                         'lname': result[14],
                         'contact_no': result[1],
                         'address': result[13],
