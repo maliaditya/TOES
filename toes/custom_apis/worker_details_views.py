@@ -29,7 +29,7 @@ import json
 def display_by_category(request,category):
     cursor=connection.cursor()
     #cursor.execute(f"select * from authapp_worker_Details where category_1 = '{category}' OR category_2 = '{category}' OR category_3 = '{category}' ")
-    cursor.execute(f"select  first_name, phone, city, category_1, category_1_vc, category_1_exp, category_2, category_2_vc, category_2_exp,category_3,category_3_vc,category_3_exp, authapp_user.id from authapp_user INNER JOIN authapp_workerdetails ON authapp_user.id = authapp_workerdetails.user_id where category_1 = '{category}' OR category_2 = '{category}' OR category_3 = '{category}'")
+    cursor.execute(f"select  first_name, phone, city, category_1, category_1_vc, category_1_exp, category_2, category_2_vc, category_2_exp,category_3,category_3_vc,category_3_exp, authapp_user.id, address,last_name from authapp_user INNER JOIN authapp_workerdetails ON authapp_user.id = authapp_workerdetails.user_id where category_1 = '{category}' OR category_2 = '{category}' OR category_3 = '{category}'")
 
     row = cursor.fetchall()
     content = {}
@@ -39,8 +39,10 @@ def display_by_category(request,category):
             # api = f'http://127.0.0.1:8000/userdetail/{result[11]}/'
             # user_info = requests.get(api, )
             # print(user_info.json())
-            content = { 'worker_name': result[0], 
+            content = { 'fname': result[0], 
+                        'lname': result[14],
                         'contact_no': result[1],
+                        'address': result[13],
                         'category':result[3],
                         'visiting_charges':result[4],
                         'experience':result[5],
@@ -49,7 +51,9 @@ def display_by_category(request,category):
             payload.append(content)
         elif  result[6] == f'{category}':
             content = {  'worker_name': result[0], 
+                        'lname': result[14],
                         'contact_no': result[1],
+                        'address': result[13],
                         'category':result[6],
                         'visiting_charges':result[7],
                         'experience':result[8],
@@ -58,7 +62,9 @@ def display_by_category(request,category):
             payload.append(content)
         else:
             content = { 'worker_name': result[0], 
+                        'lname': result[14],
                         'contact_no': result[1],
+                        'address': result[13],
                         'category':result[9],
                         'visiting_charges':result[10],
                         'experience':result[11],
