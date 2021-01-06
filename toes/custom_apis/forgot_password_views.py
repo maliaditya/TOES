@@ -9,33 +9,29 @@ import requests
 import json
 from uuid import uuid4
 from rest_framework.views import APIView
+from .models import VerifyOtp
 
 def enter_otp(request):
-    server_url = "http://52.201.220.252"
-    localhost_url = "http://127.0.0.1:8000"
-    new = "http://18.209.19.126"
     if request.method == 'POST':
-        phone = request.POST.get('phone')
-        otp = request.POST.get('otp')
-        data = {
-            "otp":otp,
-            "phone":phone,
-        }
 
-        url = f'{new}/api/verify'
-        response = requests.get(url,data=data)  
-        print(response.status_code) 
-        if response.status_code == 200:
-            return redirect(f'{new}/api/reset_password/{phone}')
-        else:
+        otp = request.POST.get('otp')
+        try:
+            mobile = VerifyOtp.objects.get(otp=otp)
+            if mobile.otp == otp:
+                VerifyOtp.objects.filter(otp=otp).delete()
+                return redirect('reset')
+            else:
+                messages.error(request,'OTP not correct')
+        except:
             messages.error(request,'OTP not correct')
     return render(request , 'custom_apis/enterotp.html')
 
 
 
 
-def passreset(request, phone):
+def passreset(request):
     if request.method == 'POST':
+        phone = request.POST.get('phone')
         password = request.POST.get('password')
         re_password = request.POST.get('re_password')
         
