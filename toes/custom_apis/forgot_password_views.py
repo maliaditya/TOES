@@ -15,8 +15,9 @@ def enter_otp(request):
     if request.method == 'POST':
 
         otp = request.POST.get('otp')
-        mobile = VerifyOtp.objects.get(otp=otp)
-        if mobile.otp == otp:
+        a = VerifyOtp.objects.get(otp=otp)
+        print(a.otp)
+        if a.otp == int(otp):
             print("inside if")
             VerifyOtp.objects.filter(otp=otp).delete()
             return redirect('reset')
