@@ -17,7 +17,7 @@ def enter_otp(request):
     if request.method == 'POST':
         phone = request.POST.get('phone')
         otp = request.POST.get('otp')
-         data = {
+        data = {
             "otp":otp,
             "phone":phone,
         }
