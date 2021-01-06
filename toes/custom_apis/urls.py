@@ -56,7 +56,7 @@ urlpatterns =[
 
 
     #admin crud
-    path("block/<int:user_id>",block),
+    path("block/<int:st>/<int:user_id>",block),
 
     
 ]
