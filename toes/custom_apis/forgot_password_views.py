@@ -18,8 +18,7 @@ def enter_otp(request):
         otp = request.POST.get('otp')
         try:
             a = VerifyOtp.objects.get(otp=otp)
-        except ObjectDoesNotExist:
-            messages.error(request,'OTP not correct')
+
             print(a.otp)
             if int(a.otp) == int(otp):
                 print("inside if")
@@ -27,6 +26,8 @@ def enter_otp(request):
                 return redirect('reset')
             else:
                 messages.error(request,'OTP not correct')
+        except ObjectDoesNotExist:
+            messages.error(request,'OTP not correct')
         
     return render(request , 'custom_apis/enterotp.html')
 
