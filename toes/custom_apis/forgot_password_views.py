@@ -13,13 +13,14 @@ from rest_framework.views import APIView
 def enter_otp(request):
     server_url = "http://52.201.220.252"
     localhost_url = "http://127.0.0.1:8000"
+    new = "http://18.209.19.126"
     if request.method == 'POST':
         otp = request.POST.get('otp')
         phone = request.POST.get('phone')
-        url = f'{server_url}/api/verify/{phone}/{otp}'
+        url = f'{new}/api/verify/{phone}/{otp}'
         response = requests.post(url)   
         if response.status_code != 400:
-            return redirect(f'{server_url}/api/reset_password/{phone}')
+            return redirect(f'{new}/api/reset_password/{phone}')
         else:
             messages.error(request,'OTP not correct')
     return render(request , 'custom_apis/enterotp.html')
