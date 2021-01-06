@@ -9,6 +9,7 @@ from .forgot_password_views import  enter_otp,passreset, verify_phone
 from .admin_api_views import get_worker_count
 from .profile_image_views import retrive_profileimage
 from .otp_views import send_otp
+from .admin_crud_views import block
 
 urlpatterns =[
     #Worker_Details
@@ -52,4 +53,10 @@ urlpatterns =[
     path("otp/<phone>/", send_otp,name="sendotp"),
     
     path("verify/phone/",verify_phone),
+
+
+    #admin crud
+    path("block/<int:user_id>",block),
+
+    
 ]
