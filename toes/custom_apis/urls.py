@@ -9,7 +9,7 @@ from .forgot_password_views import  enter_otp,passreset, verify_phone
 from .admin_api_views import get_worker_count
 from .profile_image_views import retrive_profileimage
 from .otp_views import send_otp
-from .admin_crud_views import block
+from .admin_crud_views import block,delete1
 
 urlpatterns =[
     #Worker_Details
@@ -57,7 +57,7 @@ urlpatterns =[
 
     #admin crud
     path("block/<int:st>/<int:user_id>",block),
-    path("delete/<int:user_id>",delete),
+    path("delete/<int:user_id>",delete1),
 
     
 ]
