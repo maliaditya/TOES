@@ -52,7 +52,9 @@ def verify_phone(request):
         phone = request.POST.get('phone')
         try:
             User.objects.get(phone = phone)
-            return redirect('sendotp')
+            url = f'http://52.201.220.252/api/otp/{phone}'
+            requests.get(url)
+            return redirect('enterotp')
         except ObjectDoesNotExist:
             messages.error(request,'Phone No. Does Not Exist')
         

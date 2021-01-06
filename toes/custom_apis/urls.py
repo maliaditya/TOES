@@ -34,7 +34,7 @@ urlpatterns =[
 
     #verification
     path("user/<phone>/", SendOtp.as_view(), name="OTP Gen"),
-    path("otp/", enter_otp),
+    path("otp/", enter_otp, name="enterotp"),
 
     #profileImage
     path("get/image/<int:user_id>", retrive_profileimage),
