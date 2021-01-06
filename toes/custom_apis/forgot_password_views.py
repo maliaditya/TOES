@@ -14,14 +14,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def enter_otp(request):
     if request.method == 'POST':
-
         otp = request.POST.get('otp')
         try:
             a = VerifyOtp.objects.get(otp=otp)
-
-            print(a.otp)
             if int(a.otp) == int(otp):
-                print("inside if")
                 VerifyOtp.objects.filter(otp=otp).delete()
                 return redirect('reset')
             else:
