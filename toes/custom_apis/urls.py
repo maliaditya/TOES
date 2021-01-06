@@ -49,7 +49,7 @@ urlpatterns =[
     #admin api
     path("worker_count/", get_worker_count), 
     
-    path("otp/<phone>/", send_otp),
+    path("otp/<phone>/", send_otp,name="sendotp"),
     
     path("verify/phone/",verify_phone),
 ]
