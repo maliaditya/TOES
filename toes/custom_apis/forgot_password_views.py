@@ -55,6 +55,7 @@ def verify_phone(request):
             phone = 9765402942
             url = 'http://18.209.19.126/api/otp/{}'.format(phone)
             response = requests.get(url)
+            print(response.status_code)
             if response.status_code == 200:
                 return redirect('enterotp')
         except ObjectDoesNotExist:
