@@ -40,7 +40,7 @@ urlpatterns =[
     path("get/image/<int:user_id>", retrive_profileimage),
 
     #Template
-    path("reset_password/<phone>", passreset , name="reset"),
+    path("reset_password/", passreset , name="reset"),
 
 
     #without smartphones
