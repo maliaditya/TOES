@@ -20,7 +20,7 @@ def recruiters_requests(request,recruiter_id):
     select job_description, job_title, worker_id ,amount, authapp_jobdetails.id from 
     authapp_jobdetails ,authapp_recruitersrequests 
     where authapp_recruitersrequests.job_detail_id = authapp_jobdetails.id  
-    and authapp_recruitersrequests.recruiter = {recruiter_id} and authapp_recruitersrequests.status <> 3''')
+    and authapp_recruitersrequests.recruiter = {recruiter_id} and authapp_recruitersrequests.status = 1''')
     row = cursor.fetchall()
     content = {}
     payload = []
@@ -54,7 +54,7 @@ def wokers_requests(request,worker_id):
     select job_description, job_title, recruiter_id, authapp_jobdetails.id  from 
     authapp_jobdetails ,authapp_workersrequests 
     where authapp_workersrequests.job_detail_id = authapp_jobdetails.id  
-    and worker_id = {worker_id} and authapp_workersrequests.status <> 3''' )
+    and worker_id = {worker_id} and authapp_workersrequests.status =  1''' )
     row = cursor.fetchall()
     content = {}
     payload = []
