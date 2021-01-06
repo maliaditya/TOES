@@ -15,14 +15,12 @@ def enter_otp(request):
     if request.method == 'POST':
 
         otp = request.POST.get('otp')
-        try:
-            mobile = VerifyOtp.objects.get(otp=otp)
-            if mobile.otp == otp:
-                VerifyOtp.objects.filter(otp=otp).delete()
-                return redirect('reset')
-            else:
-                messages.error(request,'OTP not correct')
-        except:
+        mobile = VerifyOtp.objects.get(otp=otp)
+        if mobile.otp == otp:
+            print("inside if")
+            VerifyOtp.objects.filter(otp=otp).delete()
+            return redirect('reset')
+        else:
             messages.error(request,'OTP not correct')
     return render(request , 'custom_apis/enterotp.html')
 
