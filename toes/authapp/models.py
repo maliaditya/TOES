@@ -103,5 +103,5 @@ class Categories(models.Model):
     categories = models.CharField(max_length=255,unique=True)
 
 class EmergencyDetails:
-    contact_no = models.CharFied(max_length=255)
+    contact_no = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
