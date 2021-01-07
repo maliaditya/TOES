@@ -29,7 +29,7 @@ import json
 def display_by_category(request,category):
     cursor=connection.cursor()
     #cursor.execute(f"select * from authapp_worker_Details where category_1 = '{category}' OR category_2 = '{category}' OR category_3 = '{category}' ")
-    cursor.execute(f"select  first_name, phone, city, category_1, category_1_vc, category_1_exp, category_2, category_2_vc, category_2_exp,category_3,category_3_vc,category_3_exp, authapp_user.id, address,last_name from authapp_user INNER JOIN authapp_workerdetails ON authapp_user.id = authapp_workerdetails.user_id where category_1 = '{category}' OR category_2 = '{category}' OR category_3 = '{category}'")
+    cursor.execute(f"select  first_name, phone, city, category_1, category_1_vc, category_1_exp, category_2, category_2_vc, category_2_exp,category_3,category_3_vc,category_3_exp, authapp_user.id, address,last_name , smartphone from authapp_user INNER JOIN authapp_workerdetails ON authapp_user.id = authapp_workerdetails.user_id where category_1 = '{category}' OR category_2 = '{category}' OR category_3 = '{category}'")
 
     row = cursor.fetchall()
     content = {}
@@ -47,6 +47,7 @@ def display_by_category(request,category):
                         'visiting_charges':result[4],
                         'experience':result[5],
                         'Worker_id':result[12],
+                        'smartphone':result[15],
                         }
             payload.append(content)
         elif  result[6] == f'{category}':
@@ -58,6 +59,8 @@ def display_by_category(request,category):
                         'visiting_charges':result[7],
                         'experience':result[8],
                         'Worker_id':result[12],
+                        'smartphone':result[15],
+
                         }
             payload.append(content)
         else:
@@ -69,6 +72,8 @@ def display_by_category(request,category):
                         'visiting_charges':result[10],
                         'experience':result[11],
                         'Worker_id':result[12],
+                        'smartphone':result[15],
+
                         }
             payload.append(content)
 
