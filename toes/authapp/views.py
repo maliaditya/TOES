@@ -115,10 +115,12 @@ class ProfileImageDetail(generics.RetrieveUpdateDestroyAPIView):
 
 ''' Emergency Details '''
 class EmergencyDetailsList(generics.ListCreateAPIView):
+    permission_classes = []
     queryset = EmergencyDetails.objects.all()
     serializer_class = EmergencyDetailsSerializer
 
 class EmergencyDetails(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = []
     queryset = EmergencyDetails.objects.all()
     serializer_class = EmergencyDetailsSerializer
 
