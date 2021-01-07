@@ -41,4 +41,9 @@ urlpatterns = [
      #Profile Image
     path('profile/image', views.ProfileImageList.as_view()),
     path('profile/image/<int:pk>', views.ProfileImageDetail.as_view()),
+
+
+    #Emergency Details
+    path('emergency', views.EmergencyDetailsList.as_view()),
+    path('emergency/<int:pk>', views.EmergencyDetails.as_view()),
 ]

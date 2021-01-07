@@ -2,7 +2,7 @@ from djoser.serializers import UserCreateSerializer, UserSerializer
 from .models import *
 from rest_framework import generics,serializers
 from . models import (
-    User,WorkerDetails,JobDetails, Categories,
+    User,WorkerDetails,JobDetails, Categories, EmergencyDetails,
     StatusMaster, RecruitersRequests, WorkersRequests,ProfileImage , 
     )
 
@@ -59,4 +59,11 @@ class WorkersRequestsSerializer(serializers.ModelSerializer):
 class ProfileImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileImage
+        fields = '__all__'
+
+
+
+class EmergencyDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmergencyDetails
         fields = '__all__'

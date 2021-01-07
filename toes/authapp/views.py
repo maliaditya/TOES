@@ -5,12 +5,13 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 from .models import  (
-    User, WorkerDetails, JobDetails, Categories, StatusMaster, WorkersRequests,
+    User, WorkerDetails, JobDetails, Categories, StatusMaster, WorkersRequests,EmergencyDetails,
     RecruitersRequests ,ProfileImage
     ) 
 from authapp.serializers import (
     UserCreateSerializer, WorkerDetailsSerializer, JobDetailsSerializer, CategoriesSerializer,
-    StatusMasterSerializer, WorkersRequestsSerializer, RecruitersRequestsSerializer, ProfileImageSerializer
+    EmergencyDetailsSerializer,StatusMasterSerializer, WorkersRequestsSerializer,
+    RecruitersRequestsSerializer, ProfileImageSerializer
     )
  
 ''' basic server testing api  not related to projects '''
@@ -110,3 +111,16 @@ class ProfileImageDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = ProfileImage.objects.all()
     serializer_class = ProfileImageSerializer
+
+
+''' Emergency Details '''
+class EmergencyDetailsList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = EmergencyDetails.objects.all()
+    serializer_class = EmergencyDetailsSerializer
+
+class EmergencyDetails(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = EmergencyDetails.objects.all()
+    serializer_class = EmergencyDetailsSerializer
+
