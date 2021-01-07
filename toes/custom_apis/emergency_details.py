@@ -14,7 +14,7 @@ import json
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def emergency(request , user_id):
-    info = EmergencyDetails.objects.filter(user = user_id)
+    info = EmergencyDetails.objects.get(user = user_id)
     data = {
         "emergency_contact" : info.contact_no
     }
