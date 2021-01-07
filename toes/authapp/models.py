@@ -7,7 +7,7 @@ from django.contrib.auth.models import (
 
 class User(AbstractUser):
     dob = models.CharField(max_length=255)
-    phone = models.CharField(max_length=255,unique=True,blank=False)
+    phone = models.CharField(max_length=255,blank=False)
     is_admin = models.BooleanField(default=False)
     isblocked = models.BooleanField(default=False)
     gender = models.CharField(max_length=255)
