@@ -63,8 +63,7 @@ urlpatterns =[
     path("delete/<int:user_id>",delete1),
 
     #emergency
-    path("get/emergency/<int: user_id>",emergency)
-
+    path("get/emergency/<int:user_id>",emergency)
 
     
 ]
