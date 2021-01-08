@@ -17,7 +17,7 @@ def recruiters_requests(request,recruiter_id):
     #cursor.execute(f"select * from authapp_worker_Details where category_1 = '{category}' OR category_2 = '{category}' OR category_3 = '{category}' ")
     #cursor.execute(f'select job_description, job_title, worker_id,amount from authapp_recruitersrequests r , authapp_jobdetails j where r.recruiter ={recruiter_id} and j.recruiter_id = r.recruiter')
     cursor.execute(f'''
-    select job_description, job_title, worker_id ,amount, authapp_jobdetails.id from 
+    select job_description, job_title, worker_id ,amount, authapp_jobdetails.id,recruiter_id from 
     authapp_jobdetails ,authapp_recruitersrequests 
     where authapp_recruitersrequests.job_detail_id = authapp_jobdetails.id  
     and authapp_recruitersrequests.recruiter = {recruiter_id} and authapp_recruitersrequests.status = 1''')
@@ -34,6 +34,7 @@ def recruiters_requests(request,recruiter_id):
             'job_description': data[0],
             'amount': data[3],
             'job_id': data[4],
+            'recruiter_id': data[5],
             'woker_fname': info[0],
             'woker_lname': info[2],
             'woker_address': info[1],
