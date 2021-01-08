@@ -15,7 +15,7 @@ def display_job(request , user ):
     cursor = connection.cursor()
     cursor.execute(f'select category_1 , category_2 ,category_3  from authapp_workerdetails where authapp_workerdetails.user_id = {user}')
     row = cursor.fetchall()
-    cursor.execute('select first_name ,job_title,last_name, recruiter_id,authapp_jobdetails.id,job_Description,address from authapp_user INNER JOIN authapp_jobdetails ON authapp_user.id  = authapp_jobdetails.recruiter_id')
+    cursor.execute('select first_name ,job_title,last_name, recruiter_id,authapp_jobdetails.id,job_Description,address from authapp_user INNER JOIN authapp_jobdetails ON authapp_user.id  = authapp_jobdetails.recruiter_id where  authapp_jobdetails.status <> 2')
     row1 = cursor.fetchall()
     content = {}
     payload = []
