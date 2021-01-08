@@ -51,7 +51,7 @@ def recruiters_requests(request,recruiter_id):
 def wokers_requests(request,worker_id):
     cursor=connection.cursor()
     cursor.execute(f'''
-    select job_description, job_title, recruiter_id, authapp_jobdetails.id  from 
+    select job_description, job_title, recruiter_id, authapp_jobdetails.id ,worker_id from 
     authapp_jobdetails ,authapp_workersrequests 
     where authapp_workersrequests.job_detail_id = authapp_jobdetails.id  
     and worker_id = {worker_id} and authapp_workersrequests.status =  1''' )
@@ -68,6 +68,7 @@ def wokers_requests(request,worker_id):
                 'job_description': data[0],
                 'recruiter_id': data[2],
                 'job_id': data[3],
+                'worker_id': data[4],
                 'recruiter_fname':info[0],
                 'recruiter_lname':info[2],
                 'address':info[1],
