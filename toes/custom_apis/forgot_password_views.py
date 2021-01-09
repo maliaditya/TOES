@@ -36,18 +36,17 @@ def passreset(request):
         re_password = request.POST.get('re_password')
         try:
             VerifyOtp.objects.get(phone = phone)
+            if re_password == password:
+                u = User.objects.get(phone = phone)
+                u.set_password(password)
+                u.save()
+                messages.success(request,'Password Successfully changed')
+                VerifyOtp.objects.filter(phone = phone).delete()
+            else:
+                messages.error(request,"Password do not match")
         except ObjectDoesNotExist:
             messages.error(request,'Please enter the number on which you got the otp!')
-            break
-        if re_password == password:
-            u = User.objects.get(phone = phone)
-            u.set_password(password)
-            u.save()
-            messages.success(request,'Password Successfully changed')
-            VerifyOtp.objects.filter(phone = phone).delete()
 
-        else:
-            messages.error(request,"Password do not match")
 
     return render(request , 'custom_apis/resetpassword.html')
 

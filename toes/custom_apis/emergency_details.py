@@ -20,6 +20,6 @@ def emergency(request , user_id):
             "emergency_contact" : info.contact_no
         }
         return Response(data=data, status=200)
-    except:
-
+    except :
+        return Response(data=data, status=400)
 
