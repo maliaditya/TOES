@@ -18,6 +18,7 @@ def enter_otp(request):
         try:
             a = VerifyOtp.objects.get(otp=otp)
             if int(a.otp) == int(otp):
+                
                 return redirect('reset')
             else:
                 messages.error(request,'OTP not correct')
@@ -34,16 +35,18 @@ def passreset(request):
         phone = request.POST.get('phone')
         password = request.POST.get('password')
         re_password = request.POST.get('re_password')
-        
-        if re_password == password:
-            u = User.objects.get(phone = phone)
-            u.set_password(password)
-            u.save()
-            messages.success(request,'Password Successfully changed')
-            VerifyOtp.objects.filter(otp=otp).delete()
-        else:
-            messages.error(request,"Password do not match")
-
+        try:
+            VerifyOtp.objects.get(phone=phone)
+            if re_password == password:
+                u = User.objects.get(phone = phone)
+                u.set_password(password)
+                u.save()
+                messages.success(request,'Password Successfully changed')
+                VerifyOtp.objects.filter(phone=phone).delete()
+            else:
+                messages.error(request,"Password do not match")
+        except ObjectDoesNotExist:
+                messages.error(request,'Please enter the number on which you have got the OTP')
     return render(request , 'custom_apis/resetpassword.html')
 
 
