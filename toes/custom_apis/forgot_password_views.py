@@ -34,19 +34,15 @@ def passreset(request):
         phone = request.POST.get('phone')
         password = request.POST.get('password')
         re_password = request.POST.get('re_password')
-        try:
-            VerifyOtp.objects.get(phone = phone)
-            if re_password == password:
-                u = User.objects.get(phone = phone)
-                u.set_password(password)
-                u.save()
-                messages.success(request,'Password Successfully changed')
-                VerifyOtp.objects.filter(phone = phone).delete()
-            else:
-                messages.error(request,"Password do not match")
-        except ObjectDoesNotExist:
-            messages.error(request,'Please enter the number on which you got the otp!')
-
+        
+        if re_password == password:
+            u = User.objects.get(phone = phone)
+            u.set_password(password)
+            u.save()
+            messages.success(request,'Password Successfully changed')
+            VerifyOtp.objects.filter(otp=otp).delete()
+        else:
+            messages.error(request,"Password do not match")
 
     return render(request , 'custom_apis/resetpassword.html')
 
@@ -54,19 +50,17 @@ def passreset(request):
 
 
 def generateOTP(): 
-    digits = "123456789"
-    OTP = "" 
-    for i in range(6): 
-        OTP += digits[math.floor(random.random() * 10)] 
+    OTP = random.randint(1000,9999)
     return OTP 
 
 def send_otp(phone):
     Mobile = User.objects.get(phone=phone) 
     otp = generateOTP()
     try:
-        VerifyOtp.objects.filter(phone = phone).delete()
+        VerifyOtp.objects.filter(otp=otp).delete()
     except ObjectDoesNotExist:
-        pass
+       pass
+    
     a = VerifyOtp(phone = phone , otp = otp )
     a.save()
     querystring = {"authorization":"8SxMu8XjX6rpRasOGDY83AoGQzedmJA7wbgGOEgp92XYsWanQBiUx96IIVeU","sender_id":"FSTSMS","language":"english","route":"qt","numbers":f"{Mobile}","message":"42422","variables":"{BB}|{FF}","variables_values":f"{otp}|http://52.201.220.252/api/otp"}
