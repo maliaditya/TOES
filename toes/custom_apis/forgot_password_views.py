@@ -63,6 +63,10 @@ def generateOTP():
 def send_otp(phone):
     Mobile = User.objects.get(phone=phone) 
     otp = generateOTP()
+    try:
+        VerifyOtp.objects.filter(phone = phone).delete()
+    except ObjectDoesNotExist:
+        pass
     a = VerifyOtp(phone = phone , otp = otp )
     a.save()
     querystring = {"authorization":"8SxMu8XjX6rpRasOGDY83AoGQzedmJA7wbgGOEgp92XYsWanQBiUx96IIVeU","sender_id":"FSTSMS","language":"english","route":"qt","numbers":f"{Mobile}","message":"42422","variables":"{BB}|{FF}","variables_values":f"{otp}|http://52.201.220.252/api/otp"}
