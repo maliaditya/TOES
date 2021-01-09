@@ -14,8 +14,12 @@ import json
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def emergency(request , user_id):
-    info = EmergencyDetails.objects.get(user = user_id)
-    data = {
-        "emergency_contact" : info.contact_no
-    }
-    return Response(data=data, status=200)
+    try:
+        info = EmergencyDetails.objects.get(user = user_id)
+        data = {
+            "emergency_contact" : info.contact_no
+        }
+        return Response(data=data, status=200)
+    except:
+
+
