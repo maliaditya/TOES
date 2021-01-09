@@ -22,10 +22,7 @@ import json
 
 
 def generateOTP(): 
-    digits = "123456789"
-    OTP = "" 
-    for i in range(6) : 
-        OTP += digits[math.floor(random.random() * 10)] 
+    OTP = random.randint(1000,9999)
     return OTP 
 
 @api_view(['GET'])
@@ -34,6 +31,11 @@ def send_otp(request,phone):
     try:
         Mobile = User.objects.get(phone=phone) 
         otp = generateOTP()
+        try:
+            VerifyOtp.objects.filter(otp=otp).delete()
+        except ObjectDoesNotExist:
+            pass
+    
         a = VerifyOtp(phone = phone , otp = otp )
         a.save()
         querystring = {"authorization":"8SxMu8XjX6rpRasOGDY83AoGQzedmJA7wbgGOEgp92XYsWanQBiUx96IIVeU","sender_id":"FSTSMS","language":"english","route":"qt","numbers":f"{Mobile}","message":"42422","variables":"{BB}|{FF}","variables_values":f"{otp}|http://65.1.2.12/api/otp"}
@@ -61,4 +63,5 @@ def verify_otp(request, phone, otp):
         VerifyOtp.objects.filter(phone=phone).delete()
         return Response("correct", status=200)
     return Response("OTP is wrong", status=400)
+
 
