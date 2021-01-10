@@ -104,7 +104,7 @@ class WorkersRequests(models.Model):
     blank=True,
     )
     cursor=connection.cursor()
-    cursor.execute(f' update authapp_workersrequests set status = 3 where .publishing_date >= NOW() - INTERVAL 10 MINUTE')
+    cursor.execute(f' update authapp_workersrequests set status = 3 where publishing_date >= NOW() - INTERVAL 10 MINUTE')
 
 
 
