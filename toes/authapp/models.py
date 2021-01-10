@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
 )
 from django.utils import timezone
 from django.utils.timezone import timedelta
+from django.db import connection
 
 ''' For Storing Basic User Information ''' 
 
@@ -102,14 +103,11 @@ class WorkersRequests(models.Model):
     default=timezone.now(),
     blank=True,
     )
+    time = self.publishing_date + timedelta(minutes=1)
+    cursor=connection.cursor()
+    cursor.execute(f' update authapp_recruitersrequests set status = 3 where {time} = {timezone.now()}')
 
-    def Reject_after_ten_minutes(self):
-        time = self.publishing_date + timedelta(minutes=1)
-        if time < timezone.now():
-            Event.objects.filter(status=3).update()
 
-obj = WorkersRequests()    
-obj.Reject_after_ten_minutes()  
 
        
 
