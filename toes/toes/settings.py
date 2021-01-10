@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['52.201.220.252','0.0.0.0','*','65.1.2.12']
 
 DJANGO_REST_LOOKUP_FIELD = 'authapp.User.phone'
 # Application definition
+USE_TZ=False
 
 INSTALLED_APPS = [
     'django.contrib.admin',
