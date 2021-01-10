@@ -108,7 +108,7 @@ class WorkersRequests(models.Model):
     )
 
     def Reject_after_ten_minutes(self):
-        time = self.publishing_date + datetime.timedelta(minutes=1)
+        time = self.publishing_date + timedelta(minutes=1)
         if time < datetime.datetime.now():
             Event.objects.filter(status=3).update()
 
