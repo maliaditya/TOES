@@ -3,10 +3,7 @@ from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser, AbstractUser
 )
 from django.utils import timezone
-
-import datetime
-from datetime import datetime, timezone
-from datetime import datetime, timedelta
+from django.utils.timezone import timedelta
 
 now = datetime.now(timezone.utc)
 ''' For Storing Basic User Information ''' 
