@@ -102,7 +102,7 @@ class WorkersRequests(models.Model):
     recruiter = models.IntegerField()
     status = models.IntegerField(default = 1)
     publishing_date = models.DateTimeField(
-    default=timezone.now,
+    default=now,
     blank=True,
     )
 
