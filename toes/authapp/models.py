@@ -103,9 +103,9 @@ class WorkersRequests(models.Model):
     default=timezone.now(),
     blank=True,
     )
-    time = self.publishing_date + timedelta(minutes=1)
+    #time = publishing_date + timedelta(minutes=1)
     cursor=connection.cursor()
-    cursor.execute(f' update authapp_recruitersrequests set status = 3 where {time} = {timezone.now()}')
+    cursor.execute(f' update authapp_recruitersrequests set status = 3 where publishing_date < {timezone.now()}')
 
 
 
