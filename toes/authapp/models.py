@@ -103,13 +103,13 @@ class WorkersRequests(models.Model):
     recruiter = models.IntegerField()
     status = models.IntegerField(default = 1)
     publishing_date = models.DateTimeField(
-    default=now,
+    default=datetime.now(),
     blank=True,
     )
 
     def Reject_after_ten_minutes(self):
         time = self.publishing_date + timedelta(minutes=1)
-        if time < datetime.datetime.now():
+        if time < datetime.now():
             Event.objects.filter(status=3).update()
 
 obj = WorkersRequests()    
