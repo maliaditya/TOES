@@ -37,7 +37,8 @@ def passreset(request):
         re_password = request.POST.get('re_password')
         try:
             VerifyOtp.objects.get(phone=phone)
-            if re_password == password:
+            val = VerifyOtp.objects.filter(phone=phone).exists()
+            if re_password == password and val == True:
                 u = User.objects.get(phone = phone)
                 u.set_password(password)
                 u.save()
