@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
 from django.utils import timezone
 from django.utils.timezone import timedelta
 from django.db import connection
+import datetime
 
 ''' For Storing Basic User Information ''' 
 
@@ -103,9 +104,9 @@ class WorkersRequests(models.Model):
     default=timezone.now(),
     blank=True,
     )
-    time = publishing_date - timedelta(minutes=1)
+    time = datetime.datetime.now() - datetime.timedelta(minutes = 1)
     cursor=connection.cursor()
-    cursor.execute(f' update authapp_workersrequests set status = 3 where publishing_date = CAST("{time}" AS time)')
+    cursor.execute(f' update authapp_workersrequests set status = 3 where publishing_date <= CAST("{time}" AS time)')
 
 
 
