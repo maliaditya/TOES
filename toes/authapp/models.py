@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser, AbstractUser
 )
+from django.utils import timezone
+
+import datetime
 
 ''' For Storing Basic User Information ''' 
 
@@ -95,7 +98,21 @@ class WorkersRequests(models.Model):
     job_detail = models.ForeignKey(JobDetails, on_delete= models.CASCADE)
     worker = models.ForeignKey(User, on_delete=models.CASCADE)
     recruiter = models.IntegerField()
-    status = models.IntegerField(default = 1)  
+    status = models.IntegerField(default = 1)
+    publishing_date = models.DateTimeField(
+    default=timezone.now,
+    blank=True,
+    )
+
+    def Reject_after_ten_minutes(self):
+        time = self.publishing_date + datetime.timedelta(minutes=1)
+        if time < datetime.datetime.now():
+            Event.objects.filter(status=3).update()
+    
+    
+    Reject_after_ten_minutes()
+
+       
 
 ''' All the work categories data will be stored in this table '''
 
