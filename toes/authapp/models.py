@@ -109,8 +109,8 @@ class WorkersRequests(models.Model):
         if time < datetime.datetime.now():
             Event.objects.filter(status=3).update()
     
-    
-    Reject_after_ten_minutes()
+    obj = WorkersRequests()
+    obj.Reject_after_ten_minutes()
 
        
 
