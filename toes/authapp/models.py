@@ -5,7 +5,9 @@ from django.contrib.auth.models import (
 from django.utils import timezone
 
 import datetime
+from datetime import datetime, timezone
 
+now = datetime.now(timezone.utc)
 ''' For Storing Basic User Information ''' 
 
 class User(AbstractUser):
