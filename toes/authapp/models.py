@@ -105,7 +105,7 @@ class WorkersRequests(models.Model):
     )
     #time = publishing_date + timedelta(minutes=1)
     cursor=connection.cursor()
-    cursor.execute(f' update authapp_recruitersrequests set status = 3 where publishing_date < CAST({timezone.now()} AS time)')
+    cursor.execute(f' update authapp_recruitersrequests set status = 3 where publishing_date < CAST("{timezone.now()}" AS time)')
 
 
 
