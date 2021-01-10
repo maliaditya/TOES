@@ -2,11 +2,6 @@ from django.db import models
 from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser, AbstractUser
 )
-from django.utils import timezone
-from django.utils.timezone import timedelta
-from django.db import connection
-import schedule
-import time
 ''' For Storing Basic User Information ''' 
 
 class User(AbstractUser):
@@ -99,23 +94,8 @@ class WorkersRequests(models.Model):
     job_detail = models.ForeignKey(JobDetails, on_delete= models.CASCADE)
     worker = models.ForeignKey(User, on_delete=models.CASCADE)
     recruiter = models.IntegerField()
-    status = models.IntegerField(default = 1)
-    publishing_date = models.DateTimeField(
-    default=timezone.now(),
-    blank=True,
-    )
-   
-
-
-def job():
-    cursor=connection.cursor()
-    cursor.execute(f' update authapp_workersrequests set status = 3 where publishing_date <= NOW() - INTERVAL 1 MINUTE and status = 1')
-
-
-
-schedule.every(1).minutes.do(job)
- 
-
+    status = models.IntegerField(default = 1) 
+    
 ''' All the work categories data will be stored in this table '''
 
 class Categories(models.Model):

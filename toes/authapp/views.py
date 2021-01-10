@@ -14,6 +14,10 @@ from authapp.serializers import (
     RecruitersRequestsSerializer, ProfileImageSerializer
     )
  
+
+
+
+
 ''' basic server testing api  not related to projects '''
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

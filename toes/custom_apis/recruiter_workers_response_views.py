@@ -58,7 +58,6 @@ def display_workers_responses(request , worker_id ):
 @permission_classes([IsAuthenticated])
 def display_recruiters_responses(request , recruiter_id ):
     cursor=connection.cursor()
-    cursor.execute(f' update authapp_workersrequests set status = 3 where publishing_date <= NOW() - INTERVAL 1 MINUTE and status = 1')
     cursor.execute(f'''
     select job_detail_id, worker_id ,authapp_workersrequests.status,job_title from  authapp_jobdetails 
     INNER JOIN authapp_workersrequests ON authapp_jobdetails.id = authapp_workersrequests.job_detail_id 
