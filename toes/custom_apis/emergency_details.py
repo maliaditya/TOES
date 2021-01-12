@@ -17,6 +17,7 @@ def emergency(request , user_id):
     try:
         info = EmergencyDetails.objects.get(user = user_id)
         data = {
+            "id":info.id,
             "emergency_contact" : info.contact_no
         }
         return Response(data=data, status=200)
