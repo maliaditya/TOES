@@ -26,7 +26,7 @@ SECRET_KEY = '2i0ar3j%__6+e$x#xzh!#r#s=@&^!3c%^!4uv(aw873y@5ks#q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.201.220.252','0.0.0.0','*','65.1.2.12']
+ALLOWED_HOSTS = []
 
 DJANGO_REST_LOOKUP_FIELD = 'authapp.User.phone'
 # Application definition
